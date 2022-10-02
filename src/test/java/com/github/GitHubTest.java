@@ -1,15 +1,15 @@
 package com.github;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-public class GitHub_Test {
+public class GitHubTest {
 
     @BeforeAll
     static void configure() {
@@ -28,14 +28,14 @@ public class GitHub_Test {
         open("/selenide/selenide");
         $("#wiki-tab").click();
         $(".markdown-body").$(byText("Soft assertions")).click();
-        $(".markdown-body").shouldHave(Condition.text("Using JUnit5"));
+        $(".markdown-body").shouldHave(text("Using JUnit5"));
     }
 
     @Test
-    void gitHub_Hover_Test() {
+    void gitHubHoverTest() {
         open("https://github.com/");
         $(".d-lg-flex").$(byText("Solutions")).hover();
         $(".border-bottom").$(byText("Compare all")).click();
-        $(".application-main").shouldHave(Condition.text("Compare features"));
+        $(".application-main").shouldHave(text("Compare features"));
     }
 }
